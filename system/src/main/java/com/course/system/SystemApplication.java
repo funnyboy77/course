@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.core.env.Environment;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.core.env.Environment;
  * date 2022-08-04
  */
 @SpringBootApplication
-@EnableEurekaServer
+@EnableEurekaClient
 @MapperScan("com.course.system.mapper")
 public class SystemApplication {
 
