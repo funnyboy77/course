@@ -30,11 +30,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <!--热部署devtools-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.course</groupId>
             <artifactId>server</artifactId>
