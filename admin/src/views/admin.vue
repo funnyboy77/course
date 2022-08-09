@@ -360,10 +360,10 @@
 
         <ul class="nav nav-list">
           <li class="" id=" welcome-sidebar">
-            <a href="index.html">
+            <router-link to ="/admin/welcome">
               <i class="menu-icon fa fa-tachometer"></i>
               <span class="menu-text"> 欢迎</span>
-            </a>
+            </router-link>
 
             <b class="arrow"></b>
           </li>
@@ -411,10 +411,10 @@
 
             <ul class="submenu">
               <li class="active" id="business-chapter-sidebar">
-                <a href="tables.html">
+                <router-link to ="/admin/business/chapter">
                   <i class="menu-icon fa fa-caret-right"></i>
                   大章管理
-                </a>
+                </router-link>
 
                 <b class="arrow"></b>
               </li>
