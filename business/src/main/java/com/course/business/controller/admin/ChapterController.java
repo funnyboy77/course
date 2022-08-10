@@ -26,6 +26,9 @@ public class ChapterController {
     @Resource
     ChapterService chapterService;
 
+    /**
+     * 列表查询
+     */
     @PostMapping("/list")
     public ResponseDto list(@RequestBody PageDto pageDto) {
         ResponseDto responseDto = new ResponseDto();
@@ -34,6 +37,9 @@ public class ChapterController {
         return responseDto;
     }
 
+    /**
+     * 保存，id有值时更新，无值时新增
+     */
     @PostMapping("/save")
     public ResponseDto save(@RequestBody ChapterDto chapterDto) {
 
@@ -47,6 +53,9 @@ public class ChapterController {
         return responseDto;
     }
 
+    /**
+     * 删除
+     */
     @RequestMapping("/delete/{id}")
     public ResponseDto delete(@PathVariable String id) {
         ResponseDto responseDto = new ResponseDto();
