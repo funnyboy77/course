@@ -34,7 +34,7 @@
             <button v-on:click="edit(chapter)" class="btn btn-xs btn-info">
               <i class="ace-icon fa fa-pencil bigger-120"></i>
             </button>
-            <button  class="btn btn-xs btn-danger">
+            <button v-on:click="del(chapter.id)" class="btn btn-xs btn-danger">
               <i class="ace-icon fa fa-trash-o bigger-120"></i>
             </button>
           </div>
@@ -119,7 +119,7 @@ export default {
       })
     },
 
-    save(page) {
+    save() {
       let _this = this;
       _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/save',this.chapter
       ).then((response) => {
@@ -130,7 +130,20 @@ export default {
           _this.list(1);
         }
       })
-    }
+    },
+
+    del(id) {
+      let _this = this;
+      _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/'+id,this.chapter
+      ).then((response) => {
+        console.log("删除新增大章结果：", response);
+        let resp = response.data;
+        if (resp.success) {
+
+          _this.list(1);
+        }
+      })
+    },
   }
 }
 </script>
