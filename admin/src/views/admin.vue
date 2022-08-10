@@ -508,14 +508,15 @@ export default {
      * 菜单激活样式，id是当前点击菜单的id
      */
     activeSidebar: function (id) {
-      $("#" + id).sibling().removeClass("active");
-      $("#" + id).sibling().find("li").removeClass("active");
+      $("#" + id).siblings().removeClass("active");
+      $("#" + id).siblings().find("li").removeClass("active");
       $("#" + id).addClass("active");
 
       //如果有父菜单，父菜单的兄弟菜单去掉open active,父菜单添加active
       let parentLi = $("#" + id).parent("li");
       if (parentLi) {
-        parentLi.sibling().removeClass("open active");
+        parentLi.siblings().removeClass("open active");
+        parentLi.siblings().find("li").removeClass("active");
         parentLi.addClass("open active");
       }
     }
