@@ -117,7 +117,7 @@ export default {
      */
     list(page) {
       let _this = this;
-      _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/list', {
+      _this.$ajax.post(process.env.VUE_APP_SERVER+'/business/admin/chapter/list', {
         page: page,
         size: _this.$refs.pagination.size,
       }).then((response) => {
@@ -140,7 +140,7 @@ export default {
       }
 
       Loading.show();
-      _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/save',this.chapter
+      _this.$ajax.post(process.env.VUE_APP_SERVER+'/business/admin/chapter/save',this.chapter
       ).then((response) => {
         let resp = response.data;
         if (resp.success) {
@@ -158,7 +158,7 @@ export default {
      */
     del(id) {
       let _this = this;
-      _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/'+id,this.chapter
+      _this.$ajax.delete(process.env.VUE_APP_SERVER+'/business/admin/chapter/delete/'+id,this.chapter
       ).then((response) => {
         let resp = response.data;
         if (resp.success) {
