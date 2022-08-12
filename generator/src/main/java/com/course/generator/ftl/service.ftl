@@ -15,6 +15,12 @@ import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 import java.util.List;
 
+<#list typeSet as type>
+    <#if type = 'Date'>
+import java.util.Date;
+    </#if>
+</#list>
+
 /**
  * @author liuchang
  * @Description 大章服务层
@@ -31,6 +37,11 @@ public class ${Domain}Service {
     public void list(PageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         ${Domain}Example ${domain}Example = new ${Domain}Example();
+        <#list fieldList as field>
+            <#if field.nameHump=='sort'>
+        ${domain}Example.setOrderByClause("sort asc");
+            </#if>
+        </#list>
         List<${Domain}> ${domain}sList = ${domain}Mapper.selectByExample(${domain}Example);
         PageInfo<${Domain}> pageInfo = new PageInfo<>(${domain}sList);
         pageDto.setTotal(pageInfo.getTotal());
@@ -55,6 +66,15 @@ public class ${Domain}Service {
      * 新增
      */
     private void insert(${Domain} ${domain}) {
+        Date now = new Date();
+        <#list fieldList as field>
+            <#if field.nameHump=='createAt'>
+        ${domain}.setCreateAt(now);
+            </#if>
+            <#if field.nameHump=='updateAt'>
+        ${domain}.setUpdateAt(now);
+            </#if>
+        </#list>
         ${domain}.setId(UuidUtil.getShortUuid());
         ${domain}Mapper.insert(${domain});
     }
@@ -63,6 +83,11 @@ public class ${Domain}Service {
      * 更新
      */
     private void update(${Domain} ${domain}) {
+    <#list fieldList as field>
+        <#if field.nameHump=='updateAt'>
+        ${domain}.setUpdateAt(new Date());
+        </#if>
+    </#list>
         ${domain}Mapper.updateByPrimaryKey(${domain});
     }
 

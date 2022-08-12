@@ -15,6 +15,8 @@ import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 import java.util.List;
 
+import java.util.Date;
+
 /**
  * @author liuchang
  * @Description 大章服务层
@@ -31,6 +33,7 @@ public class SectionService {
     public void list(PageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         SectionExample sectionExample = new SectionExample();
+        sectionExample.setOrderByClause("sort asc");
         List<Section> sectionsList = sectionMapper.selectByExample(sectionExample);
         PageInfo<Section> pageInfo = new PageInfo<>(sectionsList);
         pageDto.setTotal(pageInfo.getTotal());
@@ -55,6 +58,7 @@ public class SectionService {
      * 新增
      */
     private void insert(Section section) {
+        Date now = new Date();
         section.setId(UuidUtil.getShortUuid());
         sectionMapper.insert(section);
     }

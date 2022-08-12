@@ -2,11 +2,11 @@ package com.course.server.dto;
 
 <#list typeSet as type>
     <#if type=='Date'>
-        import java.util.Date;
-        import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
     </#if>
     <#if type=='BigDecimal'>
-        import java.math.BigDecimal;
+import java.math.BigDecimal;
     </#if>
 </#list>
 

@@ -49,8 +49,8 @@ create table `section`(
       `time` int comment '时长|单位秒',
       `charge` char(1) comment '收费|C 收费;F 免费',
       `sort` int comment '顺序',
-      `create_at` DATETIME(3) comment '创建时间',
-      `update_at` DATETIME(3) comment '修改时间',
+      `created_at` DATETIME(3) comment '创建时间',
+      `updated_at` DATETIME(3) comment '修改时间',
       primary key (`id`)
 )engine=innodb default character set utf8mb4 comment ='小节';
 

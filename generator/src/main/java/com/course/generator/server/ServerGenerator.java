@@ -3,13 +3,11 @@ package com.course.generator.server;
 import com.course.generator.util.DbUtil;
 import com.course.generator.util.Field;
 import com.course.generator.util.FreemarkerUtil;
-import freemarker.template.TemplateException;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 /**
