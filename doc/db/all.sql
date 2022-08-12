@@ -54,5 +54,24 @@ create table `section`(
       primary key (`id`)
 )engine=innodb default character set utf8mb4 comment ='小节';
 
-insert into `section` (id, title, course_id, chapter_id, video, time, charge, sort, create_at, update_at)
+insert into `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
 VALUES ('00000001','测试小节01','00000001','00000000','',500,'F',1,now(),now());
+
+# ----------课程
+drop table if exists `course`;
+create table `course`(
+       `id` char(8) not null default '' comment 'ID',
+       `name` varchar(50) not null comment '名称',
+       `summary` varchar(2000)  comment '概述',
+       `time` int comment '时长|单位秒',
+       `price` decimal(8,2)  default '0.00' comment '价格（元）',
+       `image` varchar(100)  comment '封面',
+       `level` char(1)  comment '级别|ONE("1",初级),TWO("2",中级),THREE("3",高级)',
+       `charge` char(1) comment '收费|CHARGE("C","收费"),FREE("F","免费")',
+       `status` char(1) comment '状态|PUBLISH("P","发布"),DRAFT("D","草稿")',
+       `enroll` integer default 0 comment '报名数',
+       `sort` int comment '顺序',
+       `created_at` DATETIME(3) comment '创建时间',
+       `updated_at` DATETIME(3) comment '修改时间',
+       primary key (`id`)
+)engine=innodb default character set utf8mb4 comment ='课程';
