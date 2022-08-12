@@ -1,0 +1,1 @@
+CHARGE=[{Key:"C",value:"收费"},{Key:"F",value:"免费"}];
