@@ -197,6 +197,13 @@ export default {
     save() {
       let _this = this;
       //保存校验
+      if (1 != 1
+        || !Validator.require(_this.section.title, "标题")
+        || !Validator.length(_this.section.title, "标题", 1, 50)
+        || !Validator.length(_this.section.video, "视频", 1, 200)
+      ) {
+        return;
+      }
 
       Loading.show();
       _this.$ajax.post(process.env.VUE_APP_SERVER+'/business/admin/section/save',this.section).then((response) => {
@@ -219,8 +226,7 @@ export default {
       let _this = this;
       Confirm.show("删除小节后不可恢复，确认删除？",function (){
         Loading.show();
-        _this.$ajax.delete(process.env.VUE_APP_SERVER+'/business/admin/section/delete/'+id
-        ).then((response) => {
+        _this.$ajax.delete(process.env.VUE_APP_SERVER+'/business/admin/section/delete/'+id).then((response) => {
           Loading.hide();
           let resp = response.data;
           if (resp.success) {
