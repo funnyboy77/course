@@ -18,33 +18,39 @@
       <thead>
       <tr>
        <th>ID</th>
-       <th>标题</th>
-       <th>课程</th>
-       <th>大章</th>
-       <th>视频</th>
+       <th>名称</th>
+       <th>概述</th>
        <th>时长</th>
+       <th>价格（元）</th>
+       <th>封面</th>
+       <th>级别</th>
        <th>收费</th>
+       <th>状态</th>
+       <th>报名数</th>
        <th>顺序</th>
        <th>操作</th>
       </tr>
       </thead>
       <tbody>
-      <tr v-for="section in sections">
-        <td>{{ section.id}}</td>
-        <td>{{ section.title}}</td>
-        <td>{{ section.courseId}}</td>
-        <td>{{ section.chapterId}}</td>
-        <td>{{ section.video}}</td>
-        <td>{{ section.time}}</td>
-        <td>{{ SECTION_CHARGE | optionKV(section.charge)}}</td>
-        <td>{{ section.sort}}</td>
+      <tr v-for="course in courses">
+        <td>{{ course.id}}</td>
+        <td>{{ course.name}}</td>
+        <td>{{ course.summary}}</td>
+        <td>{{ course.time}}</td>
+        <td>{{ course.price}}</td>
+        <td>{{ course.image}}</td>
+        <td>{{ COURSE_LEVEL | optionKV(course.level)}}</td>
+        <td>{{ COURSE_CHARGE | optionKV(course.charge)}}</td>
+        <td>{{ COURSE_STATUS | optionKV(course.status)}}</td>
+        <td>{{ course.enroll}}</td>
+        <td>{{ course.sort}}</td>
 
         <td>
           <div class="hidden-sm hidden-xs btn-group">
-            <button v-on:click="edit(section)" class="btn btn-xs btn-info">
+            <button v-on:click="edit(course)" class="btn btn-xs btn-info">
               <i class="ace-icon fa fa-pencil bigger-120"></i>
             </button>
-            <button v-on:click="del(section.id)" class="btn btn-xs btn-danger">
+            <button v-on:click="del(course.id)" class="btn btn-xs btn-danger">
               <i class="ace-icon fa fa-trash-o bigger-120"></i>
             </button>
           </div>
@@ -63,47 +69,69 @@
           <div class="modal-body">
             <form class="form-horizontal">
                 <div class="form-group">
-                <label class="col-sm-2 control-label">标题</label>
+                <label class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-10">
-                  <input v-model="section.title" class="form-control">
+                  <input v-model="course.name" class="form-control">
                 </div>
                 </div>
                 <div class="form-group">
-                <label class="col-sm-2 control-label">课程</label>
+                <label class="col-sm-2 control-label">概述</label>
                 <div class="col-sm-10">
-                  <input v-model="section.courseId" class="form-control">
-                </div>
-                </div>
-                <div class="form-group">
-                <label class="col-sm-2 control-label">大章</label>
-                <div class="col-sm-10">
-                  <input v-model="section.chapterId" class="form-control">
-                </div>
-                </div>
-                <div class="form-group">
-                <label class="col-sm-2 control-label">视频</label>
-                <div class="col-sm-10">
-                  <input v-model="section.video" class="form-control">
+                  <input v-model="course.summary" class="form-control">
                 </div>
                 </div>
                 <div class="form-group">
                 <label class="col-sm-2 control-label">时长</label>
                 <div class="col-sm-10">
-                  <input v-model="section.time" class="form-control">
+                  <input v-model="course.time" class="form-control">
+                </div>
+                </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">价格（元）</label>
+                <div class="col-sm-10">
+                  <input v-model="course.price" class="form-control">
+                </div>
+                </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">封面</label>
+                <div class="col-sm-10">
+                  <input v-model="course.image" class="form-control">
+                </div>
+                </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">级别</label>
+                <div class="col-sm-10">
+                  <select v-model:="course.level" class="form-control">
+                    <option v-for="o in COURSE_LEVEL" v-bind:value="o.key">{{o.value}}</option>
+                  </select>
                 </div>
                 </div>
                 <div class="form-group">
                 <label class="col-sm-2 control-label">收费</label>
                 <div class="col-sm-10">
-                  <select v-model:="section.charge" class="form-control">
-                    <option v-for="o in SECTION_CHARGE" v-bind:value="o.key">{{o.value}}</option>
+                  <select v-model:="course.charge" class="form-control">
+                    <option v-for="o in COURSE_CHARGE" v-bind:value="o.key">{{o.value}}</option>
                   </select>
+                </div>
+                </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">状态</label>
+                <div class="col-sm-10">
+                  <select v-model:="course.status" class="form-control">
+                    <option v-for="o in COURSE_STATUS" v-bind:value="o.key">{{o.value}}</option>
+                  </select>
+                </div>
+                </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">报名数</label>
+                <div class="col-sm-10">
+                  <input v-model="course.enroll" class="form-control">
                 </div>
                 </div>
                 <div class="form-group">
                 <label class="col-sm-2 control-label">顺序</label>
                 <div class="col-sm-10">
-                  <input v-model="section.sort" class="form-control">
+                  <input v-model="course.sort" class="form-control">
                 </div>
                 </div>
             </form>
@@ -121,20 +149,22 @@
 <script>
 import Pagination from "../../components/pagination";
 export default {
-  name: "business-section",
+  name: "business-course",
   components: {Pagination},
   data: function () {
     return {
-      section: {},
-      sections: [],
-      SECTION_CHARGE:SECTION_CHARGE,
+      course: {},
+      courses: [],
+      COURSE_LEVEL:COURSE_LEVEL,
+      COURSE_STATUS:COURSE_STATUS,
+      COURSE_CHARGE:COURSE_CHARGE,
     }
   },
   mounted: function () {
     let _this = this;
      _this.$refs.pagination.size = 5;
      _this.list(1);
-    // this.$parent.activeSidebar("business-section-sidebar")
+    // this.$parent.activeSidebar("business-course-sidebar")
   },
   methods: {
     /**
@@ -142,16 +172,16 @@ export default {
      */
     add() {
       let _this = this;
-      _this.section = {};
+      _this.course = {};
       $("#form-modal").modal("show");
     },
 
     /**
      * 点击【编辑】
      */
-    edit(section) {
+    edit(course) {
       let _this = this;
-      _this.section =  $.extend({},section);
+      _this.course =  $.extend({},course);
       $("#form-modal").modal("show");
     },
 
@@ -161,13 +191,13 @@ export default {
     list(page) {
       let _this = this;
       Loading.show();
-      _this.$ajax.post(process.env.VUE_APP_SERVER+'/business/admin/section/list', {
+      _this.$ajax.post(process.env.VUE_APP_SERVER+'/business/admin/course/list', {
         page: page,
         size: _this.$refs.pagination.size,
       }).then((response) => {
         Loading.hide();
         let resp = response.data;
-        _this.sections = resp.content.list;
+        _this.courses = resp.content.list;
         _this.$refs.pagination.render(page,resp.content.total);
       })
     },
@@ -179,15 +209,16 @@ export default {
       let _this = this;
       //保存校验
       if (1 != 1
-        || !Validator.require(_this.section.title, "标题")
-        || !Validator.length(_this.section.title, "标题", 1, 50)
-        || !Validator.length(_this.section.video, "视频", 1, 200)
+        || !Validator.require(_this.course.name, "名称")
+        || !Validator.length(_this.course.name, "名称", 1, 50)
+        || !Validator.length(_this.course.summary, "概述", 1, 2000)
+        || !Validator.length(_this.course.image, "封面", 1, 100)
       ) {
         return;
       }
 
       Loading.show();
-      _this.$ajax.post(process.env.VUE_APP_SERVER+'/business/admin/section/save',this.section).then((response) => {
+      _this.$ajax.post(process.env.VUE_APP_SERVER+'/business/admin/course/save',this.course).then((response) => {
         Loading.hide();
         let resp = response.data;
         if (resp.success) {
@@ -205,9 +236,9 @@ export default {
      */
     del(id) {
       let _this = this;
-      Confirm.show("删除小节后不可恢复，确认删除？",function (){
+      Confirm.show("删除课程后不可恢复，确认删除？",function (){
         Loading.show();
-        _this.$ajax.delete(process.env.VUE_APP_SERVER+'/business/admin/section/delete/'+id).then((response) => {
+        _this.$ajax.delete(process.env.VUE_APP_SERVER+'/business/admin/course/delete/'+id).then((response) => {
           Loading.hide();
           let resp = response.data;
           if (resp.success) {
