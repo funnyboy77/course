@@ -66,7 +66,7 @@
                   <div class="form-group">
                 <label class="col-sm-2 control-label">${field.nameCn}</label>
                 <div class="col-sm-10">
-                <select v-model:="${domain}.${field.nameHump}" class="form-control">
+                <select v-model="${domain}.${field.nameHump}" class="form-control">
                   <option v-for="o in ${field.enumsConst}" v-bind:value="o.key">{{o.value}}</option>
                   </select>
                 </div>
