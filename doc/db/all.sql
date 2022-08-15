@@ -17,14 +17,14 @@ create table `chapter`(
      primary key (`id`)
 )engine=innodb default character set utf8mb4 comment ='大章';
 
-insert into `chapter` (id, course_id, name) values ('00000001','00000000','测试大章01');
-insert into `chapter` (id, course_id, name) values ('00000002','00000000','测试大章02');
-insert into `chapter` (id, course_id, name) values ('00000003','00000000','测试大章03');
-insert into `chapter` (id, course_id, name) values ('00000004','00000000','测试大章04');
-insert into `chapter` (id, course_id, name) values ('00000005','00000000','测试大章05');
-insert into `chapter` (id, course_id, name) values ('00000006','00000000','测试大章06');
-insert into `chapter` (id, course_id, name) values ('00000007','00000000','测试大章07');
-insert into `chapter` (id, course_id, name) values ('00000008','00000000','测试大章08');
+insert into `chapter` (id, course_id, name) values ('00000001','00000001','测试大章01');
+insert into `chapter` (id, course_id, name) values ('00000002','00000001','测试大章02');
+insert into `chapter` (id, course_id, name) values ('00000003','00000001','测试大章03');
+insert into `chapter` (id, course_id, name) values ('00000004','00000001','测试大章04');
+insert into `chapter` (id, course_id, name) values ('00000005','00000001','测试大章05');
+insert into `chapter` (id, course_id, name) values ('00000006','course01','测试大章06');
+insert into `chapter` (id, course_id, name) values ('00000007','course01','测试大章07');
+insert into `chapter` (id, course_id, name) values ('00000008','course01','测试大章08');
 insert into `chapter` (id, course_id, name) values ('00000009','00000000','测试大章09');
 insert into `chapter` (id, course_id, name) values ('00000010','00000000','测试大章10');
 insert into `chapter` (id, course_id, name) values ('00000011','00000000','测试大章11');
@@ -55,7 +55,7 @@ create table `section`(
 )engine=innodb default character set utf8mb4 comment ='小节';
 
 insert into `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
-VALUES ('00000001','测试小节01','00000001','00000000','',500,'F',1,now(),now());
+VALUES ('00000001','测试小节01','00000001','00000001','',500,'F',1,now(),now());
 
 # ----------课程
 drop table if exists `course`;
@@ -77,4 +77,6 @@ create table `course`(
 )engine=innodb default character set utf8mb4 comment ='课程';
 
 insert into course(id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-VALUES ('0000001','测试课程01','这是一门测试课程',7200,19.9,'',1,'C','D',0,1,NOW(),NOW())
+VALUES ('00000001','测试课程01','这是一门测试课程',7200,19.9,'',1,'C','D',0,1,NOW(),NOW());
+insert into course(id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
+VALUES ('course01','测试课程02','这是一门测试课程',5800,9.9,'',1,'C','D',0,1,NOW(),NOW());
