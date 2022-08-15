@@ -45,6 +45,9 @@
               <span class="badge badge-info">时长：{{course.time}}</span>
             </p>
             <p>
+              <button v-on:click="toChapter(course)" class="btn btn-white btn-info btn-round">
+                大章
+              </button>
               <button v-on:click="edit(course)" class="btn btn-white btn-info btn-round">
                 编辑
               </button>
@@ -290,6 +293,16 @@ export default {
           }
         })
       })
+    },
+
+    /**
+     * 点击【大章】
+     */
+    toChapter(course) {
+      let _this = this;
+      SessionStorage.set("course",course);
+      _this.$router.push("/business/chapter");
+
     },
   }
 }
