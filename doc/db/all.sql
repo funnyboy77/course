@@ -11,20 +11,20 @@ insert into `test` (id,name) values (2,'测试');
 # ----------课程
 drop table if exists `course`;
 create table `course`(
-                         `id` char(8) not null default '' comment 'ID',
-                         `name` varchar(50) not null comment '名称',
-                         `summary` varchar(2000)  comment '概述',
-                         `time` int comment '时长|单位秒',
-                         `price` decimal(8,2)  default '0.00' comment '价格（元）',
-                         `image` varchar(100)  comment '封面',
-                         `level` char(1)  comment '级别|枚举[CourseLevelEnum]:ONE("1",初级),TWO("2",中级),THREE("3",高级)',
-                         `charge` char(1) comment '收费|枚举[CourseChargeEnum]:CHARGE("C","收费"),FREE("F","免费")',
-                         `status` char(1) comment '状态|枚举[CourseStatusEnum]:PUBLISH("P","发布"),DRAFT("D","草稿")',
-                         `enroll` integer default 0 comment '报名数',
-                         `sort` int comment '顺序',
-                         `created_at` DATETIME(3) comment '创建时间',
-                         `updated_at` DATETIME(3) comment '修改时间',
-                         primary key (`id`)
+       `id` char(8) not null default '' comment 'ID',
+       `name` varchar(50) not null comment '名称',
+       `summary` varchar(2000)  comment '概述',
+       `time` int comment '时长|单位秒',
+       `price` decimal(8,2)  default '0.00' comment '价格（元）',
+       `image` varchar(100)  comment '封面',
+       `level` char(1)  comment '级别|枚举[CourseLevelEnum]:ONE("1",初级),TWO("2",中级),THREE("3",高级)',
+       `charge` char(1) comment '收费|枚举[CourseChargeEnum]:CHARGE("C","收费"),FREE("F","免费")',
+       `status` char(1) comment '状态|枚举[CourseStatusEnum]:PUBLISH("P","发布"),DRAFT("D","草稿")',
+       `enroll` integer default 0 comment '报名数',
+       `sort` int comment '顺序',
+       `created_at` DATETIME(3) comment '创建时间',
+       `updated_at` DATETIME(3) comment '修改时间',
+       primary key (`id`)
 )engine=innodb default character set utf8mb4 comment ='课程';
 
 insert into course(id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
@@ -165,3 +165,23 @@ create table `course_content`(
       `content` mediumtext not null comment '课程内容',
       primary key (`id`)
 )engine=innodb default character set utf8mb4 comment ='课程内容';
+
+# ----------讲师
+drop table if exists `teacher`;
+create table `teacher`(
+    `id` char(8) not null default '' comment 'ID',
+    `name` varchar(50) not null comment '姓名',
+    `nickname` varchar(50) not null comment '昵称',
+    `image` varchar(100)  comment '头像',
+    `position` varchar(50)  comment '职位',
+    `motto` varchar(50)  comment '座右铭',
+    `intro` varchar(500)  comment '简介',
+    primary key (`id`)
+)engine=innodb default character set utf8mb4 comment ='讲师';
+
+insert into `teacher` (id, name, nickname, image, position, motto, intro)
+VALUES ('00000001','张三','张麻子','','高级项目经理','测试座右铭--自强不息，厚德载物，人文日新，行胜于言！','测试简介--任职以来，该同志认真贯彻科学发展观，遵守国家法律法规和企业规章制度，认真钻研业务知识，不断提升项目管理水平，总结出自已的管理办法，多次带领项目部团队在工程质量创优、工期履约、安全文明施工控制、成本节约和新技术应用等方面取得优异成绩，先后获得“20xx年出省施工优秀建造师”、“20xx年河南省工程建设优秀项目经理”。');
+insert into `teacher` (id, name, nickname, image, position, motto, intro)
+VALUES ('00000002','老汤','汤师爷','','高级项目经理','测试座右铭--自强不息，厚德载物，人文日新，行胜于言！','测试简介--任职以来，该同志认真贯彻科学发展观，遵守国家法律法规和企业规章制度，认真钻研业务知识，不断提升项目管理水平，总结出自已的管理办法，多次带领项目部团队在工程质量创优、工期履约、安全文明施工控制、成本节约和新技术应用等方面取得优异成绩，先后获得“20xx年出省施工优秀建造师”、“20xx年河南省工程建设优秀项目经理”。');
+insert into `teacher` (id, name, nickname, image, position, motto, intro)
+VALUES ('00000003','黄老爷','黄老爷','','高级项目经理','测试座右铭--自强不息，厚德载物，人文日新，行胜于言！','测试简介--任职以来，该同志认真贯彻科学发展观，遵守国家法律法规和企业规章制度，认真钻研业务知识，不断提升项目管理水平，总结出自已的管理办法，多次带领项目部团队在工程质量创优、工期履约、安全文明施工控制、成本节约和新技术应用等方面取得优异成绩，先后获得“20xx年出省施工优秀建造师”、“20xx年河南省工程建设优秀项目经理”。');
