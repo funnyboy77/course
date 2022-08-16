@@ -14,7 +14,6 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
-
 <#list typeSet as type>
     <#if type = 'Date'>
 import java.util.Date;
@@ -43,7 +42,7 @@ public class ${Domain}Service {
             </#if>
         </#list>
         List<${Domain}> ${domain}List = ${domain}Mapper.selectByExample(${domain}Example);
-        PageInfo<${Domain}> pageInfo = new PageInfo<>(${domain}sList);
+        PageInfo<${Domain}> pageInfo = new PageInfo<>(${domain}List);
         pageDto.setTotal(pageInfo.getTotal());
         List<${Domain}Dto> ${domain}DtoList = CopyUtil.copyList(${domain}List,${Domain}Dto.class);
         pageDto.setList(${domain}DtoList);
@@ -68,7 +67,7 @@ public class ${Domain}Service {
     private void insert(${Domain} ${domain}) {
     <#list typeSet as type>
         <#if type=='Date'>
-            Date now = new Date();
+        Date now = new Date();
         </#if>
     </#list>
         <#list fieldList as field>

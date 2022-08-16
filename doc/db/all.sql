@@ -148,3 +148,12 @@ insert into `category` (id, parent, name, sort) VALUES ('00000702','00000700','R
 insert into `category` (id, parent, name, sort) VALUES ('00000703','00000700','MongoDB',703);
 insert into `category` (id, parent, name, sort) VALUES ('00000704','00000700','OracleSQL',704);
 insert into `category` (id, parent, name, sort) VALUES ('00000705','00000700','ServerNoSql',705);
+
+# ----------课程分类
+drop table if exists `course_category`;
+create table `course_category`(
+      `id` char(8) not null default '' comment 'id',
+      `course_id` char(8)  comment '课程|course.id',
+      `category_id` char(8)  comment '分类|category.id',
+      primary key (`id`)
+)engine=innodb default character set utf8mb4 comment ='课程分类';
