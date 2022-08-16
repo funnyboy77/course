@@ -42,10 +42,10 @@ public class ${Domain}Service {
         ${domain}Example.setOrderByClause("sort asc");
             </#if>
         </#list>
-        List<${Domain}> ${domain}sList = ${domain}Mapper.selectByExample(${domain}Example);
+        List<${Domain}> ${domain}List = ${domain}Mapper.selectByExample(${domain}Example);
         PageInfo<${Domain}> pageInfo = new PageInfo<>(${domain}sList);
         pageDto.setTotal(pageInfo.getTotal());
-        List<${Domain}Dto> ${domain}DtoList = CopyUtil.copyList(${domain}sList,${Domain}Dto.class);
+        List<${Domain}Dto> ${domain}DtoList = CopyUtil.copyList(${domain}List,${Domain}Dto.class);
         pageDto.setList(${domain}DtoList);
     }
 
@@ -66,7 +66,11 @@ public class ${Domain}Service {
      * 新增
      */
     private void insert(${Domain} ${domain}) {
-        Date now = new Date();
+    <#list typeSet as type>
+        <#if type=='Date'>
+            Date now = new Date();
+        </#if>
+    </#list>
         <#list fieldList as field>
             <#if field.nameHump=='createAt'>
         ${domain}.setCreateAt(now);

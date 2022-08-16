@@ -42,10 +42,10 @@ public class CourseService {
         PageHelper.startPage(pageDto.getPage(),pageDto.getSize());
         CourseExample courseExample = new CourseExample();
         courseExample.setOrderByClause("sort asc");
-        List<Course> coursesList = courseMapper.selectByExample(courseExample);
-        PageInfo<Course> pageInfo = new PageInfo<>(coursesList);
+        List<Course> courseList = courseMapper.selectByExample(courseExample);
+        PageInfo<Course> pageInfo = new PageInfo<>(courseList);
         pageDto.setTotal(pageInfo.getTotal());
-        List<CourseDto> courseDtoList = CopyUtil.copyList(coursesList,CourseDto.class);
+        List<CourseDto> courseDtoList = CopyUtil.copyList(courseList,CourseDto.class);
         pageDto.setList(courseDtoList);
     }
 

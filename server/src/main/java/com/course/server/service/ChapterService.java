@@ -35,10 +35,10 @@ public class ChapterService {
         if (!StringUtils.isEmpty(chapterPageDto.getCourseId())) {
             criteria.andCourseIdEqualTo(chapterPageDto.getCourseId());
         }
-        List<Chapter> chaptersList = chapterMapper.selectByExample(chapterExample);
-        PageInfo<Chapter> pageInfo = new PageInfo<>(chaptersList);
+        List<Chapter> chapterList = chapterMapper.selectByExample(chapterExample);
+        PageInfo<Chapter> pageInfo = new PageInfo<>(chapterList);
         chapterPageDto.setTotal(pageInfo.getTotal());
-        List<ChapterDto> chapterDtoList = CopyUtil.copyList(chaptersList,ChapterDto.class);
+        List<ChapterDto> chapterDtoList = CopyUtil.copyList(chapterList,ChapterDto.class);
         chapterPageDto.setList(chapterDtoList);
     }
 
