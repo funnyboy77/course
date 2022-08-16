@@ -59,7 +59,7 @@ public class TeacherController {
         ValidatorUtil.length(teacherDto.getImage(), "头像", 1, 100);
         ValidatorUtil.length(teacherDto.getPosition(), "职位", 1, 50);
         ValidatorUtil.length(teacherDto.getMotto(), "座右铭", 1, 50);
-        ValidatorUtil.length(teacherDto.getIntro(), "简介", 1, 50);
+        ValidatorUtil.length(teacherDto.getIntro(), "简介", 1, 500);
 
         ResponseDto responseDto = new ResponseDto();
         teacherService.save(teacherDto);
