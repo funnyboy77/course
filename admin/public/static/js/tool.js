@@ -26,6 +26,7 @@ Tool = {
 
   /**
    * 时间格式化，date为空时取当前时间
+   *
    */
   dateFormat: function (format, date) {
     let result;
