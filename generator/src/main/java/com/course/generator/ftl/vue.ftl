@@ -30,7 +30,7 @@
         <#list fieldList as field>
           <#if field.nameHump!="createdAt" && field.nameHump!="updatedAt">
             <#if field.enums>
-        <td>{{ ${field.enumsConst}| optionKV(${domain}.${field.nameHump})}}</td>
+        <td>{{ ${field.enumsConst} | optionKV(${domain}.${field.nameHump})}}</td>
             <#else>
         <td>{{ ${domain}.${field.nameHump}}}</td>
           </#if>
