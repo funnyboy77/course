@@ -11,7 +11,7 @@ insert into `test` (id,name) values (2,'测试');
 # ----------课程
 drop table if exists `course`;
 create table `course`(
-       `id` char(8) not null default '' comment 'ID',
+       `id` char(8) not null default '' comment 'id',
        `name` varchar(50) not null comment '名称',
        `summary` varchar(2000)  comment '概述',
        `time` int comment '时长|单位秒',
@@ -36,7 +36,7 @@ VALUES ('course01','测试课程02','这是一门测试课程',5800,9.9,'',1,'C'
 drop table if exists `chapter`;
 create table `chapter`(
      `id` char(8) not null default '' comment 'id',
-     `course_id` char(8) comment '课程ID',
+     `course_id` char(8) comment '课程id',
      `name` varchar(50) comment '名称',
      primary key (`id`)
 )engine=innodb default character set utf8mb4 comment ='大章';
@@ -65,7 +65,7 @@ insert into `chapter` (id, course_id, name) values ('00000020','00000000','测�
 # ----------小节
 drop table if exists `section`;
 create table `section`(
-      `id` char(8) not null default '' comment 'ID',
+      `id` char(8) not null default '' comment 'id',
       `title` varchar(50) not null comment '标题',
       `course_id` char(8) comment '课程|course.id',
       `chapter_id` char(8) comment '大章|chapter.id',
@@ -92,8 +92,8 @@ VALUES ('00000005','测试大章07-测试小节01','course01','00000007','',500,
 # ----------分类
 drop table if exists `category`;
 create table `category`(
-       `id` char(8) not null default '' comment 'ID',
-       `parent` char(8) not null default '' comment '父ID',
+       `id` char(8) not null default '' comment 'id',
+       `parent` char(8) not null default '' comment '父id',
        `name` varchar(50) not null comment '名称',
        `sort` int comment '顺序',
        primary key (`id`)
@@ -166,10 +166,21 @@ create table `course_content`(
       primary key (`id`)
 )engine=innodb default character set utf8mb4 comment ='课程内容';
 
+# ----------课程内容文件
+drop table if exists `course_content_file`;
+create table `course_content_file`(
+    `id` char(8) not null default '' comment 'id',
+    `course_id` char(8)  comment '课程id',
+    `url` varchar(100) comment '地址',
+    `name` varchar(100) comment '文件名',
+    `size` int comment '大小|字节B',
+    primary key (`id`)
+)engine=innodb default character set utf8mb4 comment ='课程内容文件';
+
 # ----------讲师
 drop table if exists `teacher`;
 create table `teacher`(
-    `id` char(8) not null default '' comment 'ID',
+    `id` char(8) not null default '' comment 'id',
     `name` varchar(50) not null comment '姓名',
     `nickname` varchar(50) not null comment '昵称',
     `image` varchar(100)  comment '头像',
@@ -192,7 +203,7 @@ alter table `course` add column (`teacher_id` char(8) comment '讲师|teacher.id
 # ----------文件
 drop table if exists `file`;
 create table `file`(
-    `id` char(8) not null default '' comment 'ID',
+    `id` char(8) not null default '' comment 'id',
     `path` varchar(100) not null comment '相对路径',
     `name` varchar(100) comment '文件名',
     `suffix` varchar(10) comment '后缀',
