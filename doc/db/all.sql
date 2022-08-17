@@ -188,3 +188,18 @@ VALUES ('00000003','黄老爷','黄老爷','','高级项目经理','测试座右
 
 #课程表中增加讲师字段
 alter table `course` add column (`teacher_id` char(8) comment '讲师|teacher.id');
+
+# ----------文件
+drop table if exists `file`;
+create table `file`(
+    `id` char(8) not null default '' comment 'ID',
+    `path` varchar(100) not null comment '相对路径',
+    `name` varchar(100) comment '文件名',
+    `suffix` varchar(10) comment '后缀',
+    `size` int comment '大小|字节B',
+    `use` char(1) comment '用途|枚举[FileUseEnum]:COURSE("C","课程");TEACHER("T","讲师")',
+    `created_at` DATETIME(3) comment '创建时间',
+    `updated_at` DATETIME(3) comment '修改时间',
+    primary key (`id`),
+    unique key `path-unique` (`path`)
+)engine=innodb default character set utf8mb4 comment ='文件';
