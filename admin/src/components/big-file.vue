@@ -39,6 +39,9 @@
         let formData = new window.FormData();
         let file = _this.$refs.file.files[0];
 
+        let key = hex_md5(file);
+        let key10 = parseInt(key,16);
+        let key62 = Tool._10to62(key10);
         //判断文件格式
         let suffixs = _this.suffixs;
         let fileName = file.name;
@@ -74,6 +77,7 @@
         formData.append('name',file.name);
         formData.append('suffix',suffix);
         formData.append('size',size);
+        formData.append('key',key62);
         Loading.show();
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/upload',formData).then((response)=>{
           Loading.hide();
