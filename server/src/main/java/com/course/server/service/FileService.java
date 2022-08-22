@@ -10,9 +10,11 @@ import com.course.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.Collection;
 import java.util.List;
 import java.util.Date;
 
@@ -44,10 +46,12 @@ public class FileService {
      */
     public void save(FileDto fileDto) {
         File file = CopyUtil.copy(fileDto,File.class);
-        if (StringUtils.isEmpty(fileDto.getId())) {
+        File fileDb = selectByKey(file.getKey());
+        if (fileDb == null) {
             this.insert(file);
         }else {
-            this.update(file);
+            fileDb.setShardIndex(fileDto.getShardIndex());
+            this.update(fileDb);
         }
 
     }
@@ -73,6 +77,20 @@ public class FileService {
      */
     public void delete(String id) {
         fileMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 根据key查找
+     */
+    public File selectByKey(String key) {
+        FileExample example = new FileExample();
+        example.createCriteria().andKeyEqualTo(key);
+        List<File> fileList = fileMapper.selectByExample(example);
+        if (CollectionUtils.isEmpty(fileList)) {
+            return null;
+        }else {
+            return fileList.get(0);
+        }
     }
 
 }
