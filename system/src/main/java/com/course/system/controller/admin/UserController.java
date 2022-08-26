@@ -1,6 +1,7 @@
 package com.course.system.controller.admin;
 
 
+import com.course.server.dto.LoginUserDto;
 import com.course.server.dto.PageDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.dto.UserDto;
@@ -76,6 +77,18 @@ public class UserController {
     public ResponseDto delete(@PathVariable String id) {
         ResponseDto responseDto = new ResponseDto();
         userService.delete(id);
+        return responseDto;
+    }
+
+    /**
+     * 登录
+     */
+    @PostMapping("/login")
+    public ResponseDto login(@RequestBody UserDto userDto) {
+        userDto.setPassword(DigestUtils.md5DigestAsHex(userDto.getPassword().getBytes()));
+        ResponseDto responseDto = new ResponseDto();
+        LoginUserDto loginUserDto = userService.login(userDto);
+        responseDto.setContent(loginUserDto);
         return responseDto;
     }
 }
