@@ -39,9 +39,11 @@
         let formData = new window.FormData();
         let file = _this.$refs.file.files[0];
 
-        let key = hex_md5(file);
+        console.log(JSON.stringify(file));
+        let key = hex_md5(file.name + file.size + file.type);
         let key10 = parseInt(key,16);
         let key62 = Tool._10to62(key10);
+        console.log(key,key10,key62);
         //判断文件格式
         let suffixs = _this.suffixs;
         let fileName = file.name;
