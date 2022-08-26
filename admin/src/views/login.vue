@@ -43,7 +43,7 @@
                         <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
                               <div class="input-group">
-                                <input type="text" class="form-control" placeholder="验证码">
+                                <input v-model="user.imageCode" type="text" class="form-control" placeholder="验证码">
                                 <span class="input-group-addon" id="basic-addon2">
                                   <img v-on:click="loadImageCode()" id="image-code" alt="验证码"/>
                                 </span>
@@ -85,12 +85,15 @@
 </template>
 
 <script>
+import Vue from "vue";
+
 export default {
   name: "login",
   data: function () {
     return {
       user: {},
       remember: true,//默认勾选记住我
+      imageCodeToken: "",
     }
   },
   mounted: function () {
@@ -119,6 +122,8 @@ export default {
         _this.user.password = hex_md5(_this.user.password + KEY);
       }
 
+      _this.user.imageCodeToken = _this.imageCodeToken;
+
       Loading.show();
       _this.$ajax.post(process.env.VUE_APP_SERVER+'/system/admin/user/login',_this.user).then((response) => {
         Loading.hide();
@@ -126,7 +131,7 @@ export default {
         if (resp.success) {
           console.log("登录成功：",resp.content);
           let loginUser = resp.content;
-          Tool.setLoginUser(loginUser);
+          Tool.setLoginUser(resp.content);
           //判断记住我
           if (_this.remember) {
             //如果勾选记住我，则将用户名和密码保存到本地缓存
