@@ -10,6 +10,7 @@ import Section from "./views/admin/section";
 import Content from "./views/admin/content";
 import Teacher from "./views/admin/teacher";
 import File from "./views/admin/file";
+import User from "./views/admin/user";
 
 
 Vue.use(Router);
@@ -56,9 +57,12 @@ export default new Router({
             name: "business/teacher",
             component: Teacher,
         },{
-            path: "file/file",
-            name: "file/file",
+            path: "file/file",           name: "file/file",
             component: File,
+        },{
+            path: "system/user",
+            name: "system/user",
+            component: User,
         }]
     }]
 })
