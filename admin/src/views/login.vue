@@ -95,8 +95,16 @@ export default {
   methods: {
     login() {
       let _this = this;
-      let passwordShow = _this.user.password;
-      _this.user.password = hex_md5(_this.user.password + KEY);
+      //将明文密码存储到缓存中
+      // let passwordShow = _this.user.password;
+
+      //如果密码是从缓存中带出来的，则不需要加密
+      let md5 = hex_md5(_this.user.password);
+      let rememberUser = LocalStorage.get(LOCAL_KEY_REMEMBER_USER) || {};
+      if (md5 !== rememberUser.md5){
+        _this.user.password = hex_md5(_this.user.password + KEY);
+      }
+
       Loading.show();
       _this.$ajax.post(process.env.VUE_APP_SERVER+'/system/admin/user/login',_this.user).then((response) => {
         Loading.hide();
@@ -107,10 +115,15 @@ export default {
           Tool.setLoginUser(loginUser);
           //判断记住我
           if (_this.remember) {
-            //如果勾选记住我，则将用户名和密码保存到本地缓存，这里需要保存密码明文，否则登录时又加一层密
+            //如果勾选记住我，则将用户名和密码保存到本地缓存
+            //原： 这里需要保存密码明文，否则登录时又加一层密
+            //新： 这里需要保存密码密文，并保存密文MD5，用于检测密码是否被重新输入过
+            let md5 = hex_md5(_this.user.password);
             LocalStorage.set(LOCAL_KEY_REMEMBER_USER,{
               loginName: loginUser.loginName,
-              password: passwordShow
+              password: _this.user.password,
+              // password: passwordShow,
+              md5: md5
             });
           }else {
             //没有勾选记住我时，要把本地缓存清空，否则下次打开会直接显示用户名密码
