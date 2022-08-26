@@ -95,7 +95,7 @@
               Toast.success("文件极速秒传成功！");
               _this.afterUpload(resp);
               $("#" + _this.inputId + "-input").val("");
-            }  else {
+            } else {
               param.shardIndex = obj.shardIndex + 1;
               console.log("找到文件记录，从分片" + param.shardIndex + "开始上传");
               _this.upload(param);
