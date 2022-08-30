@@ -12,10 +12,17 @@ axios.defaults.withCredentials = true;
 
 //axios拦截器
 axios.interceptors.request.use(function (config){
+    config.headers.samesite = "None";
     console.log("请求：",config);
+    let token = Tool.getLoginUser().token;
+    if (Tool.isNotEmpty(token)) {
+        config.headers.token = token;
+        console.log("请求headers增加token：",token);
+    }
     return config;
 }, error => {});
 axios.interceptors.request.use(function (response){
+    response.headers.samesite = "None";
     console.log("返回结果：",response);
     return response;
 }, error => {});
