@@ -225,8 +225,8 @@ alter table `file` add unique key key_unique(`key`);
 drop table if exists `user`;
 create table `user`(
     `id` char(8) not null default '' comment 'id',
-    `login_name` varchar(50) not null comment '登录名称',
-    `name` varchar(50) comment '用户名',
+    `login_name` varchar(50) not null comment '登录名',
+    `name` varchar(50) comment '昵称',
     `password` char(32) not null comment '密码',
     primary key (`id`),
     unique key `login_name_unique` (`login_name`)
@@ -254,3 +254,16 @@ insert into `resource` values ('0102','资源管理','/system/resource',null,'01
 insert into `resource` values ('010201','保存/显示',null,'["/system/admin/resource“]','0102');
 insert into `resource` values ('0103','角色管理','/system/role',null,'01');
 insert into `resource` values ('010301','角色/权限管理',null,'["/system/admin/role“]','0103');
+
+# ----------角色
+drop table if exists `role`;
+create table `role`(
+  `id` char(8) not null default '' comment 'id',
+  `name` varchar(50) not null comment '角色',
+  `desc` varchar(100) not null comment '描述',
+  primary key (`id`)
+)engine=innodb default character set utf8mb4 comment ='角色';
+
+insert into `role` values ('00000000','系统管理员','管理用户、角色权限');
+insert into `role` values ('00000001','开发','维护资源');
+insert into `role` values ('00000002','业务管理员','负责业务管理');

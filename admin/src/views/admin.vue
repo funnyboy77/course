@@ -360,7 +360,6 @@
               <i class="menu-icon fa fa-tachometer"></i>
               <span class="menu-text"> 欢迎：{{loginUser.name}}</span>
             </router-link>
-
             <b class="arrow"></b>
           </li>
 
@@ -368,7 +367,6 @@
             <a href="#" class="dropdown-toggle">
               <i class="menu-icon fa fa-list"></i>
               <span class="menu-text"> 系统管理 </span>
-
               <b class="arrow fa fa-angle-down"></b>
             </a>
 
@@ -380,20 +378,28 @@
                   <i class="menu-icon fa fa-caret-right"></i>
                   用户管理
                 </router-link>
-
                 <b class="arrow"></b>
               </li>
 
-              <li class="" id="system-resource-sidebar">
-                <router-link to="/system/resource">
+              <li class="" id="system-role-sidebar">
+                <router-link to="/system/role">
                   <i class="menu-icon fa fa-caret-right"></i>
-                  资源管理
+                  角色管理
                 </router-link>
-
                 <b class="arrow"></b>
               </li>
             </ul>
           </li>
+
+          <li class="" id="system-resource-sidebar">
+            <router-link to="/system/resource">
+              <i class="menu-icon fa fa-caret-right"></i>
+              资源管理
+            </router-link>
+            <b class="arrow"></b>
+          </li>
+        </ul>
+        </li>
 
           <li class="">
             <a href="#" class="dropdown-toggle">
