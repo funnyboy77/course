@@ -3,7 +3,7 @@
 },{
   "id": "01", "name": "系统管理",
   "children": [{
-      "id": "0101", "name": "系统管理", "page": "system/user",
+      "id": "0101", "name": "用户管理", "page": "system/user",
       "children": [
         {"id": "010101", "name": "保存", "request": ["/system/admin/user/list", "/system/admin/user/save"]},
         {"id": "010102", "name": "删除", "request": ["/system/admin/user/delete"]},

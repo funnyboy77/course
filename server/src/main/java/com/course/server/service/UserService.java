@@ -133,7 +133,7 @@ public class UserService {
                 LoginUserDto loginUserDto = CopyUtil.copy(user, LoginUserDto.class);
                 // 为登录用户读取权限
                 setAuth(loginUserDto);
-                return CopyUtil.copy(user,LoginUserDto.class);
+                return loginUserDto;
             }else {
                 //密码错误
                 LOG.info("密码错误,输入密码：{}，数据库密码：{}",userDto.getPassword(),user.getPassword());

@@ -251,9 +251,9 @@ insert into `resource` values ('010101','保存',null,'["/system/admin/user/list
 insert into `resource` values ('010102','删除',null,'["/system/admin/user/delete"]','0101');
 insert into `resource` values ('010103','重置密码',null,'["/system/admin/user/save-password"]','0101');
 insert into `resource` values ('0102','资源管理','/system/resource',null,'01');
-insert into `resource` values ('010201','保存/显示',null,'["/system/admin/resource“]','0102');
+insert into `resource` values ('010201','保存/显示',null,'["/system/admin/resource"]','0102');
 insert into `resource` values ('0103','角色管理','/system/role',null,'01');
-insert into `resource` values ('010301','角色/权限管理',null,'["/system/admin/role“]','0103');
+insert into `resource` values ('010301','角色/权限管理',null,'["/system/admin/role"]','0103');
 
 # ----------角色
 drop table if exists `role`;
