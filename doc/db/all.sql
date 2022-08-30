@@ -232,7 +232,10 @@ create table `user`(
     unique key `login_name_unique` (`login_name`)
 )engine=innodb default character set utf8mb4 comment ='用户';
 
-insert into `user` (id, login_name, name, password) VALUES ('10000000','test','测试','123456');
+INSERT INTO `user` VALUES ('1xISB8qT', 'business', 'business', 'fb09b64e309e1c33e7cf8cfe99b07bd5');
+INSERT INTO `user` VALUES ('9hYDWroh', 'file', 'file', 'fb09b64e309e1c33e7cf8cfe99b07bd5');
+INSERT INTO `user` VALUES ('LVl9Ak3L', 'system', 'system', 'fb09b64e309e1c33e7cf8cfe99b07bd5');
+INSERT INTO `user` VALUES ('PrGeVjl7', 'user', 'user', 'fb09b64e309e1c33e7cf8cfe99b07bd5');
 
 # ----------资源
 drop table if exists `resource`;
@@ -245,15 +248,26 @@ create table `resource`(
    primary key (`id`)
 )engine=innodb default character set utf8mb4 comment ='资源';
 
-insert into `resource` values ('01','系统管理',null,null,null);
-insert into `resource` values ('0101','用户管理','/system/user',null,'01');
-insert into `resource` values ('010101','保存',null,'["/system/admin/user/list","/system/admin/user/save"]','0101');
-insert into `resource` values ('010102','删除',null,'["/system/admin/user/delete"]','0101');
-insert into `resource` values ('010103','重置密码',null,'["/system/admin/user/save-password"]','0101');
-insert into `resource` values ('0102','资源管理','/system/resource',null,'01');
-insert into `resource` values ('010201','保存/显示',null,'["/system/admin/resource"]','0102');
-insert into `resource` values ('0103','角色管理','/system/role',null,'01');
-insert into `resource` values ('010301','角色/权限管理',null,'["/system/admin/role"]','0103');
+INSERT INTO `resource` VALUES ('00', '欢迎', 'welcome', null, '');
+INSERT INTO `resource` VALUES ('01', '系统管理', null, null, '');
+INSERT INTO `resource` VALUES ('0101', '用户管理', 'system/user', null, '01');
+INSERT INTO `resource` VALUES ('010101', '保存', null, '[\"/system/admin/user/list\",\"/system/admin/user/save\"]', '0101');
+INSERT INTO `resource` VALUES ('010102', '删除', null, '[\"/system/admin/user/delete\"]', '0101');
+INSERT INTO `resource` VALUES ('010103', '重置密码', null, '[\"/system/admin/user/save-password\"]', '0101');
+INSERT INTO `resource` VALUES ('0102', '资源管理', 'system/resource', null, '01');
+INSERT INTO `resource` VALUES ('010201', '保存/显示', null, '[\"/system/admin/resource\"]', '0102');
+INSERT INTO `resource` VALUES ('0103', '角色管理', 'system/role', null, '01');
+INSERT INTO `resource` VALUES ('010301', '角色/权限管理', null, '[\"/system/admin/role\"]', '0103');
+INSERT INTO `resource` VALUES ('02', '业务管理', null, null, '');
+INSERT INTO `resource` VALUES ('0201', '分类管理', 'business/category', null, '02');
+INSERT INTO `resource` VALUES ('020101', '增删改查', null, '[\"/business/admin/category\"]', '0201');
+INSERT INTO `resource` VALUES ('0202', '课程管理', 'business/course', null, '02');
+INSERT INTO `resource` VALUES ('020201', '增删改查', null, '[\"/business/admin/course\",\"/business/admin/category/all\"]', '0202');
+INSERT INTO `resource` VALUES ('0203', '讲师管理', 'business/teacher', null, '02');
+INSERT INTO `resource` VALUES ('020301', '增删改查', null, '[\"/business/admin/teacher\"]', '0203');
+INSERT INTO `resource` VALUES ('03', '文件管理', null, null, '');
+INSERT INTO `resource` VALUES ('0301', '文件管理', 'file/file', null, '03');
+INSERT INTO `resource` VALUES ('030101', '文件管理', null, '[\"/file/admin/file\"]', '0301');
 
 # ----------角色
 drop table if exists `role`;
@@ -277,15 +291,45 @@ create table `role_resource`(
    primary key (`id`)
 )engine=innodb default character set utf8mb4 comment ='角色资源';
 
-insert into `role_resource` values ('00000000','00000000','01');
-insert into `role_resource` values ('00000001','00000000','0101');
-insert into `role_resource` values ('00000002','00000000','010101');
-insert into `role_resource` values ('00000003','00000000','010102');
-insert into `role_resource` values ('00000004','00000000','010103');
-insert into `role_resource` values ('00000005','00000000','0102');
-insert into `role_resource` values ('00000006','00000000','010201');
-insert into `role_resource` values ('00000007','00000000','0103');
-insert into `role_resource` values ('00000008','00000000','010301');
+INSERT INTO `role_resource` VALUES ('0pFAadJK', '00000001', '0103');
+INSERT INTO `role_resource` VALUES ('0rj4lCon', '00000001', '030101');
+INSERT INTO `role_resource` VALUES ('0v2Li7c1', '00000002', '0201');
+INSERT INTO `role_resource` VALUES ('21QehmZC', '00000000', '03');
+INSERT INTO `role_resource` VALUES ('5MZOS7Mx', '00000002', '020301');
+INSERT INTO `role_resource` VALUES ('AadcexkB', '00000000', '00');
+INSERT INTO `role_resource` VALUES ('BzwAhdmw', '00000000', '0201');
+INSERT INTO `role_resource` VALUES ('ceIs5G7R', '00000002', '0203');
+INSERT INTO `role_resource` VALUES ('cHPaJnXG', '00000000', '010101');
+INSERT INTO `role_resource` VALUES ('eMJpYiXz', '00000002', '0202');
+INSERT INTO `role_resource` VALUES ('g5M9VC5p', '00000001', '0102');
+INSERT INTO `role_resource` VALUES ('iJhGCo3c', '00000001', '01');
+INSERT INTO `role_resource` VALUES ('jcpmcF6V', '00000001', '010103');
+INSERT INTO `role_resource` VALUES ('JUCvZhan', '00000000', '010201');
+INSERT INTO `role_resource` VALUES ('lgvRNNWq', '00000001', '010201');
+INSERT INTO `role_resource` VALUES ('mTUVEK60', '00000000', '020201');
+INSERT INTO `role_resource` VALUES ('nJaCwDGX', '00000000', '0202');
+INSERT INTO `role_resource` VALUES ('nNnXKvat', '00000000', '020301');
+INSERT INTO `role_resource` VALUES ('OJJSEvAC', '00000002', '020101');
+INSERT INTO `role_resource` VALUES ('Pg1Obc8V', '00000001', '03');
+INSERT INTO `role_resource` VALUES ('pOXVaBI5', '00000000', '010103');
+INSERT INTO `role_resource` VALUES ('QknHIlCs', '00000000', '010102');
+INSERT INTO `role_resource` VALUES ('rfFswrxh', '00000001', '010301');
+INSERT INTO `role_resource` VALUES ('sk0AHmCJ', '00000000', '0203');
+INSERT INTO `role_resource` VALUES ('SSC1DZrH', '00000000', '0101');
+INSERT INTO `role_resource` VALUES ('toj7i6UU', '00000000', '010301');
+INSERT INTO `role_resource` VALUES ('vlyzEdTw', '00000000', '020101');
+INSERT INTO `role_resource` VALUES ('W6YdlJLr', '00000002', '02');
+INSERT INTO `role_resource` VALUES ('WexNoshT', '00000001', '010102');
+INSERT INTO `role_resource` VALUES ('WpTITpTa', '00000000', '02');
+INSERT INTO `role_resource` VALUES ('WsBwQax2', '00000000', '0103');
+INSERT INTO `role_resource` VALUES ('XAGSnQjy', '00000000', '01');
+INSERT INTO `role_resource` VALUES ('XaPBccOQ', '00000002', '020201');
+INSERT INTO `role_resource` VALUES ('XgTLBFem', '00000000', '0301');
+INSERT INTO `role_resource` VALUES ('Xwl6fvnF', '00000000', '030101');
+INSERT INTO `role_resource` VALUES ('XYkl8wMF', '00000001', '010101');
+INSERT INTO `role_resource` VALUES ('yskAc09e', '00000000', '0102');
+INSERT INTO `role_resource` VALUES ('zGnfcrT6', '00000001', '0101');
+INSERT INTO `role_resource` VALUES ('ZvNONixc', '00000001', '0301');
 
 # ----------角色用户
 drop table if exists `role_user`;
@@ -296,4 +340,7 @@ create table `role_user`(
   primary key (`id`)
 )engine=innodb default character set utf8mb4 comment ='角色用户';
 
-insert into `role_user` values ('00000000','00000000','10000000');
+INSERT INTO `role_user` VALUES ('00000000', '00000000', 'LVl9Ak3L');
+INSERT INTO `role_user` VALUES ('gjTgpy0i', '00000001', 'PrGeVjl7');
+INSERT INTO `role_user` VALUES ('UZmA6SiV', '00000002', '1xISB8qT');
+INSERT INTO `role_user` VALUES ('VHthrvWl', '00000001', '9hYDWroh');
