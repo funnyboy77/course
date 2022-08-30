@@ -30,7 +30,7 @@ public class UserService {
     @Resource
     UserMapper userMapper;
 
-    private static final Logger LOG = LoggerFactory.getLogger(CourseService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
     /**
      * 列表查询
      */

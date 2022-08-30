@@ -173,7 +173,7 @@ export default {
       }
 
       Loading.show();
-      _this.$ajax.post(process.env.VUE_APP_SERVER+'/${module}/admin/${domain}/save',this.${domain}).then((response) => {
+      _this.$ajax.post(process.env.VUE_APP_SERVER+'/${module}/admin/${domain}/save',_this.${domain}).then((response) => {
         Loading.hide();
         let resp = response.data;
         if (resp.success) {
