@@ -2,6 +2,7 @@ package com.course.business.controller.web;
 
 
 import com.course.server.dto.*;
+import com.course.server.enums.CourseStatusEnum;
 import com.course.server.service.CourseCategoryService;
 import com.course.server.service.CourseService;
 import com.course.server.util.ValidatorUtil;
@@ -37,6 +38,17 @@ public class CourseController {
         ResponseDto responseDto = new ResponseDto();
         List<CourseDto> courseDtoList = courseService.listNew(pageDto);
         responseDto.setContent(courseDtoList);
+        return responseDto;
+    }
+
+    /**
+     * 列表查询
+     */
+    @PostMapping("/list")
+    public ResponseDto list(@RequestBody PageDto pageDto) {
+        ResponseDto responseDto = new ResponseDto();
+        courseService.list(pageDto);
+        responseDto.setContent(pageDto);
         return responseDto;
     }
 

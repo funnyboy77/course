@@ -118,14 +118,14 @@
         //将图片转为base64进行传输
         let fileReader = new FileReader();
 
-        Process.show(parseInt((shardIndex - 1) * 100 / shardTotal));
+        Progress.show(parseInt((shardIndex - 1) * 100 / shardTotal));
         fileReader.onload = function (e) {
           let base64 = e.target.result;
           param.shard = base64;
           _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/upload', param).then((response) => {
             let resp = response.data;
             console.log("上传文件成功", resp);
-            Process.show(parseInt(shardIndex * 100 / shardTotal));
+            Progress.show(parseInt(shardIndex * 100 / shardTotal));
             if (shardIndex < shardTotal) {
               //上传下一个分片
               param.shardIndex = param.shardIndex + 1;
